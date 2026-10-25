@@ -22,13 +22,13 @@ A cinematic portfolio for **Viresh Swami**, Software Developer & IoT Enthusiast,
 - Interactive procedural 3D hero rendered with Three.js
 - GSAP and ScrollTrigger entrance choreography, scroll-linked effects, and a pinned horizontal project runway on desktop
 - Lenis smooth scrolling
-- Animated preloader and full-screen shutter navigation
+- Animated preloader and scroll-triggered section transitions
 - Cursor response, magnetic controls, parallax, and moving type ticker
 - Responsive layout and reduced-motion support
 
 ## Getting started
 
-Requires Node.js 18+.
+Requires Node.js compatible with the installed Vite version.
 
 ```bash
 npm install
