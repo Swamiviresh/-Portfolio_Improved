@@ -1,6 +1,14 @@
-# Viresh — Motion Portfolio
+# Viresh Swami — Motion Portfolio
 
-A cinematic, animation-heavy developer portfolio built with React, Vite, Three.js, GSAP, ScrollTrigger, and Lenis.
+A cinematic portfolio for **Viresh Swami**, Software Developer & IoT Enthusiast, pursuing a B.E. in Information Science & Engineering at Siddaganga Institute of Technology.
+
+## Profile highlights
+
+- Based in Bengaluru, Karnataka, India
+- Languages: Python, HTML, CSS
+- Tools and platforms: Git, GitHub, Render, Namecheap, VS Code, Claude Code, Cursor
+- First-place winner at CORSIT's ROBOCOR '26 Robotics Workshop
+- Featured projects: Aviator Crash Game, Smart Parking Web App, Finwise Money Tracker, File Format Converter
 
 ## Visual direction
 
@@ -38,9 +46,14 @@ npm run preview
 
 ## Customize
 
-- `src/App.jsx`: page content, projects, links, navigation, and GSAP choreography
+- `src/App.jsx`: profile details, projects, education, award, links, and GSAP choreography
 - `src/components/ThreeHero.jsx`: procedural Three.js scene and pointer response
 - `src/styles.css`: layout, responsive behavior, palette, and motion styling
 - `public/favicon.svg`: favicon
 
-Replace placeholder links and the sample contact email before publishing.
+## Contact
+
+- Email: swamiviresh2007@email.com
+- Phone: +91 9890659693
+- GitHub: https://github.com/Swamiviresh
+- Resume: linked directly from the portfolio contact section
