@@ -482,3 +482,79 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--lime-dark);outline-
 .site-header{gap:22px}
 .header-location{flex:0 0 auto;color:var(--muted-ink);font:9px var(--mono);letter-spacing:.07em}
 @media(max-width:650px){.site-header{gap:12px}.header-center{max-width:65%;font-size:7px;line-height:1.5}.header-location{display:none}}
+
+
+/* Living Particle Field — interactive controls and progressive fallback */
+.hero-webgl-mount.particle-field {
+  isolation: isolate;
+  touch-action: pan-y;
+}
+.hero-webgl-mount.particle-field .hero-webgl-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  touch-action: pan-y;
+  cursor: crosshair;
+}
+.particle-instructions {
+  position: absolute;
+  z-index: 2;
+  top: 25px;
+  right: 6px;
+  max-width: 190px;
+  color: var(--muted-ink);
+  font: 8px/1.6 var(--mono);
+  letter-spacing: .045em;
+  text-align: right;
+  pointer-events: none;
+}
+.particle-wave-control {
+  position: absolute;
+  z-index: 4;
+  top: 54px;
+  right: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid rgba(74,74,74,.28);
+  background: rgba(255,255,227,.86);
+  color: var(--ink);
+  font: 8px var(--mono);
+  letter-spacing: .065em;
+  cursor: pointer;
+  transition: background .25s, color .25s, border-color .25s, transform .25s;
+  backdrop-filter: blur(8px);
+}
+.particle-wave-control span {
+  color: var(--muted-ink);
+  font-size: 12px;
+  transition: transform .25s;
+}
+.particle-wave-control:hover,
+.particle-wave-control:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.particle-wave-control:hover span {
+  color: var(--paper);
+  transform: translate(2px,-2px);
+}
+.hero-webgl-mount[data-webgl-fallback="true"] {
+  background: radial-gradient(ellipse at center, rgba(109,129,150,.2), transparent 68%);
+}
+.hero-webgl-mount[data-webgl-fallback="true"] .particle-wave-control {
+  display: none;
+}
+@media (max-width: 1023px) {
+  .particle-instructions { top: 20px; right: 4%; }
+  .particle-wave-control { top: 48px; right: 4%; }
+}
+@media (max-width: 650px) {
+  .particle-instructions { top: 11px; right: 8px; max-width: 150px; font-size: 7px; }
+  .particle-wave-control { top: 36px; right: 8px; padding: 8px 9px; font-size: 7px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .particle-wave-control, .particle-wave-control span { transition: none; }
+}
