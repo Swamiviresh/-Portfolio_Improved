@@ -2,7 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
-import { ArrowDown, ArrowDownRight, ArrowUpRight, Github, Mail, Phone, MapPin, Menu, X, ShieldCheck, CarFront, Layers3, Trophy, ExternalLink } from 'lucide-react';
+import { ArrowDown, ArrowDownRight, ArrowUpRight, Github, Mail, Phone, MapPin, ShieldCheck, CarFront, Layers3, Trophy, ExternalLink } from 'lucide-react';
 import ThreeHero from './components/ThreeHero.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -65,15 +65,8 @@ function Preloader({ onComplete }) {
   return <div className="preloader"><div className="loader-top"><span>VIRESH SWAMI / PORTFOLIO</span><span>SOFTWARE + IOT — 2026</span></div><div className="loader-center"><div className="loader-clip"><h2 className="loader-title">MAKE IT<br/><i>MATTER.</i></h2></div><div className="loader-progress"><span>PREPARING THE EXPERIENCE</span><span><b ref={count}>000</b> / 100</span></div><div className="loader-meter"><i ref={fill}/></div></div><div className="loader-bottom"><span>CODE / CURIOSITY / CRAFT</span><span>PLEASE STAND BY ↗</span></div></div>;
 }
 
-function Header({ menuOpen, setMenuOpen, menuRef }) {
-  return <>
-    <header className="site-header"><Wordmark/><div className="header-center"><i/> SOFTWARE DEVELOPER & IOT ENTHUSIAST <span>/ 2026</span></div><button className="menu-trigger magnetic" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? 'CLOSE' : 'MENU'} {menuOpen ? <X size={17}/> : <Menu size={17}/>}</button></header>
-    <div className={`menu-overlay ${menuOpen ? 'menu-visible' : ''}`} aria-hidden={!menuOpen} ref={menuRef}>
-      <div className="menu-top"><span>VIRESH SWAMI / INDEX</span><span>SELECT A DESTINATION ↘</span></div>
-      <nav className="menu-links">{[['01','Home','#home'],['02','Selected work','#work'],['03','About & education','#about'],['04','Contact','#contact']].map(([n,label,href])=><a href={href} key={n} tabIndex={menuOpen ? 0 : -1} onClick={()=>setMenuOpen(false)}><span>{n}</span><b>{label}</b><ArrowUpRight size={25}/></a>)}</nav>
-      <div className="menu-bottom"><span>SOFTWARE / IOT / REAL-WORLD BUILDS</span><span>BENGALURU, INDIA ↗</span></div>
-    </div>
-  </>;
+function Header() {
+  return <header className="site-header"><Wordmark/><div className="header-center"><i/> SOFTWARE DEVELOPER & IOT ENTHUSIAST <span>/ 2026</span></div><div className="header-location">BENGALURU, INDIA ↗</div></header>;
 }
 
 function Hero() {
@@ -150,8 +143,8 @@ function CustomCursor() {
 }
 
 export default function App() {
-  const [loading,setLoading] = useState(true), [menuOpen,setMenuOpen] = useState(false);
-  const root = useRef(null), menu = useRef(null);
+  const [loading,setLoading] = useState(true);
+  const root = useRef(null);
   const finish = useCallback(() => setLoading(false), []);
   useEffect(() => { document.body.classList.toggle('is-loading',loading); return () => document.body.classList.remove('is-loading'); },[loading]);
 
@@ -162,7 +155,7 @@ export default function App() {
     const tick = t => lenis?.raf(t*1000);
     if (lenis) { lenis.on('scroll',ScrollTrigger.update); gsap.ticker.add(tick); gsap.ticker.lagSmoothing(0); }
     const anchors = [];
-    document.querySelectorAll('a[href^="#"]').forEach(a => { const target=document.querySelector(a.getAttribute('href')); if(!target)return; const fn=e=>{e.preventDefault();setMenuOpen(false);lenis?lenis.scrollTo(target,{duration:1.2}):target.scrollIntoView();};a.addEventListener('click',fn);anchors.push([a,fn]); });
+    document.querySelectorAll('a[href^="#"]').forEach(a => { const target=document.querySelector(a.getAttribute('href')); if(!target)return; const fn=e=>{e.preventDefault();lenis?lenis.scrollTo(target,{duration:1.2}):target.scrollIntoView();};a.addEventListener('click',fn);anchors.push([a,fn]); });
     const magnetic = [];
     if (!reduced && !matchMedia('(pointer: coarse)').matches) document.querySelectorAll('.magnetic').forEach(el=>{const move=e=>{const r=el.getBoundingClientRect();gsap.to(el,{x:(e.clientX-r.left-r.width/2)*.14,y:(e.clientY-r.top-r.height/2)*.14,duration:.35,ease:'power3.out',overwrite:true});};const leave=()=>gsap.to(el,{x:0,y:0,duration:.65,ease:'elastic.out(1,.35)',overwrite:true});el.addEventListener('pointermove',move);el.addEventListener('pointerleave',leave);magnetic.push([el,move,leave]);});
     return () => { anchors.forEach(([a,fn])=>a.removeEventListener('click',fn)); magnetic.forEach(([el,m,l])=>{el.removeEventListener('pointermove',m);el.removeEventListener('pointerleave',l);}); if(lenis){gsap.ticker.remove(tick);lenis.destroy();} };
@@ -196,13 +189,6 @@ export default function App() {
     return () => ctx.revert();
   },[loading]);
 
-  useLayoutEffect(() => {
-    if(loading||!menu.current)return;
-    const el=menu.current;
-    if(menuOpen){gsap.set(el,{visibility:'visible',clipPath:'inset(0 0 100% 0)'});const tl=gsap.timeline();tl.to(el,{clipPath:'inset(0 0 0 0)',duration:.8,ease:'power4.inOut'}).fromTo('.menu-top,.menu-bottom',{y:16,opacity:0},{y:0,opacity:1,duration:.45},.35).fromTo('.menu-links a',{yPercent:120,rotateX:-16},{yPercent:0,rotateX:0,stagger:.08,duration:.65,ease:'power4.out'},.27);return()=>tl.kill();}
-    const tl=gsap.to(el,{clipPath:'inset(0 0 100% 0)',duration:.65,ease:'power4.inOut',onComplete:()=>gsap.set(el,{visibility:'hidden'})});return()=>tl.kill();
-  },[menuOpen,loading]);
-  useEffect(()=>{if(!menuOpen)return;const fn=e=>{if(e.key==='Escape')setMenuOpen(false);};window.addEventListener('keydown',fn);return()=>window.removeEventListener('keydown',fn);},[menuOpen]);
 
-  return <div className={`app-shell ${menuOpen?'menu-is-open':''}`} ref={root}><div className="scroll-progress"><i/></div><CustomCursor/><Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} menuRef={menu}/><main><Hero/><Marquee/><Work/><About/><Contact/></main>{loading&&<Preloader onComplete={finish}/>}</div>;
+  return <div className="app-shell" ref={root}><div className="scroll-progress"><i/></div><CustomCursor/><Header/><main><Hero/><Marquee/><Work/><About/><Contact/></main>{loading&&<Preloader onComplete={finish}/>}</div>;
 }
