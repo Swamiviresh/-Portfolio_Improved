@@ -12,10 +12,10 @@ A cinematic portfolio for **Viresh Swami**, Software Developer & IoT Enthusiast,
 
 ## Visual direction
 
-- Pale lavender-grey surfaces
-- Near-black typography and dark project panels
-- Electric-lime interactive accents
-- Chrome-like procedural 3D sculpture with lavender and lime lighting
+- Soft ivory (#FFFFE3) and cool gray (#CBCBCB) surfaces
+- Charcoal (#4A4A4A) typography and dark project panels
+- Slate-blue accents using #6D8196
+- Chrome-like procedural 3D sculpture with slate-blue, charcoal, gray, and ivory materials
 
 ## Motion features
 
