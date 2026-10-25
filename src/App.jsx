@@ -7,6 +7,8 @@ import ThreeHero from './components/ThreeHero.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const RESUME_URL = import.meta.env.NEXT_PUBLIC_RESUME_URL || 'https://nlmmbqpnshyrovulfmhm.supabase.co/storage/v1/object/public/resume/Viresh_Swami_Updated_Resume.pdf';
+
 const projects = [
   {
     n: '01', type: 'REAL-TIME / MULTIPLAYER',
@@ -79,7 +81,7 @@ function Hero() {
     <div className="eyebrow intro-fade"><i/> VIRESH SWAMI — SOFTWARE DEVELOPER & IOT ENTHUSIAST</div>
     <div className="hero-grid"><div className="hero-copy"><h1 className="hero-title"><span><b>BUILDING</b></span><span className="indent"><b>WHAT'S</b></span><span><b>NEXT<span className="lime">.</span></b></span></h1>
       <div className="hero-intro intro-fade"><p>I’m <strong>Viresh Swami</strong> — an Information Science & Engineering student who builds real-time applications, IoT-integrated web solutions, and full-stack projects. Based in Bengaluru, India.</p><a className="round-arrow magnetic" href="#work" aria-label="Explore work"><ArrowDownRight size={23}/></a></div>
-      <div className="hero-quicklinks intro-fade"><a href="https://github.com/Swamiviresh" target="_blank" rel="noreferrer"><Github size={15}/> GITHUB <ArrowUpRight size={12}/></a><a href="mailto:swamiviresh2007@email.com"><Mail size={15}/> EMAIL <ArrowUpRight size={12}/></a><a href="https://nlmmbqpnshyrovulfmhm.supabase.co/storage/v1/object/public/resume/Viresh_Swami_Updated_Resume.pdf" target="_blank" rel="noreferrer"><ArrowDown size={14}/> RESUME PDF</a></div>
+      <div className="hero-quicklinks intro-fade"><a href="https://github.com/Swamiviresh" target="_blank" rel="noreferrer"><Github size={15}/> GITHUB <ArrowUpRight size={12}/></a><a href="mailto:swamiviresh2007@email.com"><Mail size={15}/> EMAIL <ArrowUpRight size={12}/></a><a href={RESUME_URL} target="_blank" rel="noreferrer"><ArrowDown size={14}/> RESUME PDF</a></div>
       </div>
       <div className="hero-art"><div className="coordinates top">BENGALURU<br/>KARNATAKA, IN</div><ThreeHero/><div className="coordinates bottom">REAL-TIME / WEBGL<br/>POINTER TRACKING ↗</div><div className="figure-index"><span>FIG. 001</span><b>THE BUILDER</b></div><div className="scroll-cue">SCROLL TO EXPLORE <ArrowDown size={14}/></div></div>
     </div>
@@ -129,7 +131,7 @@ function About() {
 }
 
 function Contact() {
-  return <section id="contact" className="contact-section"><div className="contact-noise"/><div className="contact-inner section-shell"><SectionLabel n="03" dark>THE NEXT CHAPTER</SectionLabel><div className="contact-content"><p>HAVE A PROJECT IN MIND?</p><h2>LET'S MAKE<br/><i>IT MATTER.</i></h2><a className="contact-cta magnetic" href="mailto:swamiviresh2007@email.com"><span>EMAIL VIRESH SWAMI</span><ArrowUpRight size={24}/></a><div className="contact-details"><a href="mailto:swamiviresh2007@email.com"><Mail size={16}/> swamiviresh2007@email.com</a><a href="tel:+919890659693"><Phone size={16}/> +91 9890659693</a><a href="https://nlmmbqpnshyrovulfmhm.supabase.co/storage/v1/object/public/resume/Viresh_Swami_Updated_Resume.pdf" target="_blank" rel="noreferrer"><ArrowDown size={16}/> DOWNLOAD RESUME</a></div></div><footer className="footer-bottom"><Wordmark light/><span>VIRESH SWAMI · SOFTWARE DEVELOPER & IOT ENTHUSIAST</span><div className="socials"><a href="https://github.com/Swamiviresh" target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={17}/></a><a href="mailto:swamiviresh2007@email.com" aria-label="Email"><Mail size={17}/></a></div><span>© 2026 VIRESH SWAMI</span></footer></div></section>;
+  return <section id="contact" className="contact-section"><div className="contact-noise"/><div className="contact-inner section-shell"><SectionLabel n="03" dark>THE NEXT CHAPTER</SectionLabel><div className="contact-content"><p>HAVE A PROJECT IN MIND?</p><h2>LET'S MAKE<br/><i>IT MATTER.</i></h2><a className="contact-cta magnetic" href="mailto:swamiviresh2007@email.com"><span>EMAIL VIRESH SWAMI</span><ArrowUpRight size={24}/></a><div className="contact-details"><a href="mailto:swamiviresh2007@email.com"><Mail size={16}/> swamiviresh2007@email.com</a><a href="tel:+919890659693"><Phone size={16}/> +91 9890659693</a><a href={RESUME_URL} target="_blank" rel="noreferrer"><ArrowDown size={16}/> DOWNLOAD RESUME</a></div></div><footer className="footer-bottom"><Wordmark light/><span>VIRESH SWAMI · SOFTWARE DEVELOPER & IOT ENTHUSIAST</span><div className="socials"><a href="https://github.com/Swamiviresh" target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={17}/></a><a href="mailto:swamiviresh2007@email.com" aria-label="Email"><Mail size={17}/></a></div><span>© 2026 VIRESH SWAMI</span></footer></div></section>;
 }
 
 function CustomCursor() {
