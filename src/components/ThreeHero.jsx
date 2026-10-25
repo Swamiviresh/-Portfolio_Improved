@@ -35,14 +35,14 @@ export default function ThreeHero() {
     scene.environment = environmentTarget.texture;
     room.dispose();
 
-    scene.add(new THREE.AmbientLight(0xe8e4ff, 1.3));
-    const key = new THREE.DirectionalLight(0xffffff, 3.2);
+    scene.add(new THREE.AmbientLight(0xffffe3, 1.3));
+    const key = new THREE.DirectionalLight(0xffffe3, 3.2);
     key.position.set(4, 5, 6);
     scene.add(key);
-    const limeLight = new THREE.PointLight(0xd4ff00, 23, 16, 2);
+    const limeLight = new THREE.PointLight(0x6d8196, 23, 16, 2);
     limeLight.position.set(-3.3, 1.4, 2.5);
     scene.add(limeLight);
-    const lavenderLight = new THREE.PointLight(0xb9b2f4, 18, 15, 2);
+    const lavenderLight = new THREE.PointLight(0xcbcbcb, 18, 15, 2);
     lavenderLight.position.set(2.5, -2.2, -2);
     scene.add(lavenderLight);
 
@@ -51,21 +51,21 @@ export default function ThreeHero() {
     scene.add(group);
     const coreMat = new THREE.MeshPhysicalMaterial({
       color: 0x1b1a20, metalness: 0.92, roughness: 0.2,
-      clearcoat: 1, clearcoatRoughness: 0.12, emissive: 0x181624, emissiveIntensity: 0.35,
+      clearcoat: 1, clearcoatRoughness: 0.12, emissive: 0x4a4a4a, emissiveIntensity: 0.35,
     });
     const core = new THREE.Mesh(new THREE.SphereGeometry(0.84, 72, 72), coreMat);
     group.add(core);
 
     const limeMat = new THREE.MeshPhysicalMaterial({
-      color: 0xd4ff00, metalness: 0.68, roughness: 0.17, clearcoat: 1,
-      clearcoatRoughness: 0.08, emissive: 0x526800, emissiveIntensity: 0.38,
+      color: 0x6d8196, metalness: 0.68, roughness: 0.17, clearcoat: 1,
+      clearcoatRoughness: 0.08, emissive: 0x2f3c47, emissiveIntensity: 0.38,
     });
     const knot = new THREE.Mesh(new THREE.TorusKnotGeometry(0.77, 0.145, 260, 22, 2, 5), limeMat);
     knot.rotation.set(0.48, 0.16, 0.4);
     group.add(knot);
 
     const chromeMat = new THREE.MeshPhysicalMaterial({
-      color: 0xd9d6e8, metalness: 0.97, roughness: 0.18, clearcoat: 1, clearcoatRoughness: 0.1,
+      color: 0xffffe3, metalness: 0.97, roughness: 0.18, clearcoat: 1, clearcoatRoughness: 0.1,
     });
     const orbitA = new THREE.Mesh(new THREE.TorusGeometry(1.43, 0.022, 14, 220), chromeMat);
     orbitA.rotation.set(1.02, 0.45, 0.28);
@@ -79,14 +79,14 @@ export default function ThreeHero() {
 
     const wire = new THREE.Mesh(
       new THREE.IcosahedronGeometry(1.86, 2),
-      new THREE.MeshBasicMaterial({ color: 0xb9b2f4, wireframe: true, transparent: true, opacity: 0.16 }),
+      new THREE.MeshBasicMaterial({ color: 0xcbcbcb, wireframe: true, transparent: true, opacity: 0.16 }),
     );
     group.add(wire);
 
     const count = 1250;
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
-    const lime = new THREE.Color(0xd4ff00), lavender = new THREE.Color(0xd8d4ed), ink = new THREE.Color(0x383443);
+    const lime = new THREE.Color(0x6d8196), lavender = new THREE.Color(0xcbcbcb), ink = new THREE.Color(0x4a4a4a);
     for (let i = 0; i < count; i++) {
       const radius = 2.05 + Math.random() * 3.2;
       const theta = Math.random() * Math.PI * 2;
@@ -107,7 +107,7 @@ export default function ThreeHero() {
 
     const halo = new THREE.Mesh(
       new THREE.RingGeometry(2.08, 2.105, 180),
-      new THREE.MeshBasicMaterial({ color: 0xd4ff00, transparent: true, opacity: 0.28, side: THREE.DoubleSide }),
+      new THREE.MeshBasicMaterial({ color: 0x6d8196, transparent: true, opacity: 0.28, side: THREE.DoubleSide }),
     );
     halo.position.z = -0.9;
     halo.rotation.z = 0.1;
