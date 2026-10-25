@@ -2,7 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
-import { ArrowDown, ArrowDownRight, ArrowUpRight, Github, Mail, Phone, MapPin, Menu, X, ShieldCheck, CarFront, Layers3, Trophy, GraduationCap, ExternalLink } from 'lucide-react';
+import { ArrowDown, ArrowDownRight, ArrowUpRight, Github, Mail, Phone, MapPin, Menu, X, ShieldCheck, CarFront, Layers3, Trophy, ExternalLink } from 'lucide-react';
 import ThreeHero from './components/ThreeHero.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -63,10 +63,10 @@ function Preloader({ onComplete }) {
   return <div className="preloader"><div className="loader-top"><span>VIRESH SWAMI / PORTFOLIO</span><span>SOFTWARE + IOT — 2026</span></div><div className="loader-center"><div className="loader-clip"><h2 className="loader-title">MAKE IT<br/><i>MATTER.</i></h2></div><div className="loader-progress"><span>PREPARING THE EXPERIENCE</span><span><b ref={count}>000</b> / 100</span></div><div className="loader-meter"><i ref={fill}/></div></div><div className="loader-bottom"><span>CODE / CURIOSITY / CRAFT</span><span>PLEASE STAND BY ↗</span></div></div>;
 }
 
-function Header({ menuOpen, setMenuOpen }) {
+function Header({ menuOpen, setMenuOpen, menuRef }) {
   return <>
     <header className="site-header"><Wordmark/><div className="header-center"><i/> SOFTWARE DEVELOPER & IOT ENTHUSIAST <span>/ 2026</span></div><button className="menu-trigger magnetic" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? 'CLOSE' : 'MENU'} {menuOpen ? <X size={17}/> : <Menu size={17}/>}</button></header>
-    <div className={`menu-overlay ${menuOpen ? 'menu-visible' : ''}`} aria-hidden={!menuOpen}>
+    <div className={`menu-overlay ${menuOpen ? 'menu-visible' : ''}`} aria-hidden={!menuOpen} ref={menuRef}>
       <div className="menu-top"><span>VIRESH SWAMI / INDEX</span><span>SELECT A DESTINATION ↘</span></div>
       <nav className="menu-links">{[['01','Home','#home'],['02','Selected work','#work'],['03','About & education','#about'],['04','Contact','#contact']].map(([n,label,href])=><a href={href} key={n} tabIndex={menuOpen ? 0 : -1} onClick={()=>setMenuOpen(false)}><span>{n}</span><b>{label}</b><ArrowUpRight size={25}/></a>)}</nav>
       <div className="menu-bottom"><span>SOFTWARE / IOT / REAL-WORLD BUILDS</span><span>BENGALURU, INDIA ↗</span></div>
@@ -202,5 +202,5 @@ export default function App() {
   },[menuOpen,loading]);
   useEffect(()=>{if(!menuOpen)return;const fn=e=>{if(e.key==='Escape')setMenuOpen(false);};window.addEventListener('keydown',fn);return()=>window.removeEventListener('keydown',fn);},[menuOpen]);
 
-  return <div className={`app-shell ${menuOpen?'menu-is-open':''}`} ref={root}><div className="scroll-progress"><i/></div><CustomCursor/><Header menuOpen={menuOpen} setMenuOpen={setMenuOpen}/><main><Hero/><Marquee/><Work/><About/><Contact/></main>{loading&&<Preloader onComplete={finish}/>}</div>;
+  return <div className={`app-shell ${menuOpen?'menu-is-open':''}`} ref={root}><div className="scroll-progress"><i/></div><CustomCursor/><Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} menuRef={menu}/><main><Hero/><Marquee/><Work/><About/><Contact/></main>{loading&&<Preloader onComplete={finish}/>}</div>;
 }
