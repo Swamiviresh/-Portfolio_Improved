@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import { ArrowDown, ArrowDownRight, ArrowUpRight, Github, Mail, Phone, MapPin, ShieldCheck, CarFront, Layers3, Trophy, ExternalLink } from 'lucide-react';
-import ParticleHero from './components/ParticleHero.jsx';
+import ThreeHero from './components/ThreeHero.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -76,7 +76,7 @@ function Hero() {
       <div className="hero-intro intro-fade"><p>I’m <strong>Viresh Swami</strong> — an Information Science & Engineering student who builds real-time applications, full-stack web apps, and practical digital tools. Based in Bengaluru, India.</p><a className="round-arrow magnetic" href="#work" aria-label="Explore work"><ArrowDownRight size={23}/></a></div>
       <div className="hero-quicklinks intro-fade"><a href="https://github.com/Swamiviresh" target="_blank" rel="noreferrer"><Github size={15}/> GITHUB <ArrowUpRight size={12}/></a><a href="mailto:swamiviresh2007@email.com"><Mail size={15}/> EMAIL <ArrowUpRight size={12}/></a><a href={RESUME_URL} target="_blank" rel="noreferrer"><ArrowDown size={14}/> RESUME PDF</a></div>
       </div>
-      <div className="hero-art"><div className="coordinates top">BENGALURU<br/>KARNATAKA, IN</div><ParticleHero/><div className="coordinates bottom">POINT CLOUD / GAME AVATAR<br/>MOVE TO SCATTER ↗</div><div className="figure-index"><span>FIG. 001</span><b>THE BUILDER</b></div><div className="scroll-cue">SCROLL TO EXPLORE <ArrowDown size={14}/></div></div>
+      <div className="hero-art"><div className="coordinates top">BENGALURU<br/>KARNATAKA, IN</div><ThreeHero/><div className="coordinates bottom">REAL-TIME / WEBGL<br/>POINTER TRACKING ↗</div><div className="figure-index"><span>FIG. 001</span><b>THE BUILDER</b></div><div className="scroll-cue">SCROLL TO EXPLORE <ArrowDown size={14}/></div></div>
     </div>
     <div className="hero-footer intro-fade"><span>SOFTWARE / FULL-STACK / WEB</span><span>SIDDAGANGA INSTITUTE OF TECHNOLOGY</span><span>01 — 04</span></div>
   </section>;
