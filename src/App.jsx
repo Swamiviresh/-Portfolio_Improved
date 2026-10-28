@@ -19,9 +19,9 @@ const projects = [
     source: 'https://github.com/Swamiviresh/aviator',
   },
   {
-    n: '02', type: 'IOT / FULL-STACK',
-    title: <>Smart parking,<br/>connected live.</>,
-    desc: 'An IoT-integrated parking system with multi-level parking management, time-based slot booking, slot selection, and disability accommodation. Built with a six-member cross-disciplinary team on an approximately ₹8,000 budget.',
+    n: '02', type: 'FULL-STACK / WEB APP',
+    title: <>Smart parking,<br/>managed smarter.</>,
+    desc: 'A parking management web app with multi-level parking management, time-based slot booking, slot selection, and disability accommodation. Built with a six-member cross-disciplinary team on an approximately ₹8,000 budget.',
     tags: ['React', 'Vite', 'Tailwind', 'Node.js', 'Turso'],
     icon: <CarFront size={21}/>, visual: 'parking',
     source: 'https://github.com/Swamiviresh/New-Smart-Parking',
@@ -62,23 +62,23 @@ function Preloader({ onComplete }) {
       .to('.preloader', { yPercent: -105, duration: .85, ease: 'power4.inOut' }, 1.47);
     return () => tl.kill();
   }, [onComplete]);
-  return <div className="preloader"><div className="loader-top"><span>VIRESH SWAMI / PORTFOLIO</span><span>SOFTWARE + IOT — 2026</span></div><div className="loader-center"><div className="loader-clip"><h2 className="loader-title">MAKE IT<br/><i>MATTER.</i></h2></div><div className="loader-progress"><span>PREPARING THE EXPERIENCE</span><span><b ref={count}>000</b> / 100</span></div><div className="loader-meter"><i ref={fill}/></div></div><div className="loader-bottom"><span>CODE / CURIOSITY / CRAFT</span><span>PLEASE STAND BY ↗</span></div></div>;
+  return <div className="preloader"><div className="loader-top"><span>VIRESH SWAMI / PORTFOLIO</span><span>WEB / SOFTWARE — 2026</span></div><div className="loader-center"><div className="loader-clip"><h2 className="loader-title">MAKE IT<br/><i>MATTER.</i></h2></div><div className="loader-progress"><span>PREPARING THE EXPERIENCE</span><span><b ref={count}>000</b> / 100</span></div><div className="loader-meter"><i ref={fill}/></div></div><div className="loader-bottom"><span>CODE / CURIOSITY / CRAFT</span><span>PLEASE STAND BY ↗</span></div></div>;
 }
 
 function Header() {
-  return <header className="site-header"><Wordmark/><div className="header-center"><i/> SOFTWARE DEVELOPER & IOT ENTHUSIAST <span>/ 2026</span></div><div className="header-location">BENGALURU, INDIA ↗</div></header>;
+  return <header className="site-header"><Wordmark/><div className="header-center"><i/> SOFTWARE DEVELOPER <span>/ 2026</span></div><div className="header-location">BENGALURU, INDIA ↗</div></header>;
 }
 
 function Hero() {
   return <section id="home" className="hero section-shell">
-    <div className="eyebrow intro-fade"><i/> VIRESH SWAMI — SOFTWARE DEVELOPER & IOT ENTHUSIAST</div>
+    <div className="eyebrow intro-fade"><i/> VIRESH SWAMI — SOFTWARE DEVELOPER</div>
     <div className="hero-grid"><div className="hero-copy"><h1 className="hero-title"><span><b>BUILDING</b></span><span className="indent"><b>WHAT'S</b></span><span><b>NEXT<span className="lime">.</span></b></span></h1>
-      <div className="hero-intro intro-fade"><p>I’m <strong>Viresh Swami</strong> — an Information Science & Engineering student who builds real-time applications, IoT-integrated web solutions, and full-stack projects. Based in Bengaluru, India.</p><a className="round-arrow magnetic" href="#work" aria-label="Explore work"><ArrowDownRight size={23}/></a></div>
+      <div className="hero-intro intro-fade"><p>I’m <strong>Viresh Swami</strong> — an Information Science & Engineering student who builds real-time applications, full-stack web apps, and practical digital tools. Based in Bengaluru, India.</p><a className="round-arrow magnetic" href="#work" aria-label="Explore work"><ArrowDownRight size={23}/></a></div>
       <div className="hero-quicklinks intro-fade"><a href="https://github.com/Swamiviresh" target="_blank" rel="noreferrer"><Github size={15}/> GITHUB <ArrowUpRight size={12}/></a><a href="mailto:swamiviresh2007@email.com"><Mail size={15}/> EMAIL <ArrowUpRight size={12}/></a><a href={RESUME_URL} target="_blank" rel="noreferrer"><ArrowDown size={14}/> RESUME PDF</a></div>
       </div>
       <div className="hero-art"><div className="coordinates top">BENGALURU<br/>KARNATAKA, IN</div><ThreeHero/><div className="coordinates bottom">REAL-TIME / WEBGL<br/>POINTER TRACKING ↗</div><div className="figure-index"><span>FIG. 001</span><b>THE BUILDER</b></div><div className="scroll-cue">SCROLL TO EXPLORE <ArrowDown size={14}/></div></div>
     </div>
-    <div className="hero-footer intro-fade"><span>SOFTWARE / IOT / FULL-STACK</span><span>SIDDAGANGA INSTITUTE OF TECHNOLOGY</span><span>01 — 04</span></div>
+    <div className="hero-footer intro-fade"><span>SOFTWARE / FULL-STACK / WEB</span><span>SIDDAGANGA INSTITUTE OF TECHNOLOGY</span><span>01 — 04</span></div>
   </section>;
 }
 
@@ -92,12 +92,12 @@ function SectionLabel({ n, children, dark = false }) {
 }
 
 function ProjectVisual({ type }) {
-  if (type === 'parking') return <div className="visual visual-parking"><div className="visual-head"><span>SP / DASHBOARD</span><span>LIVE SYSTEM <i/></span></div><div className="parking-layout"><div><small>AVAILABLE SLOTS</small><strong>08<span>/12</span></strong><div className="occupancy"><i/></div><small>LIVE OCCUPANCY</small></div><div className="parking-slots">{Array.from({length:12},(_,i)=><div key={i} className={[2,5,8,10].includes(i)?'filled':''}>{String(i+1).padStart(2,'0')}</div>)}</div></div><div className="visual-foot"><span>ENTRY: RFID VERIFIED</span><span>BOOK / ACCESS ↗</span></div><div className="visual-stamp">CONNECTED<br/>SYSTEMS</div></div>;
+  if (type === 'parking') return <div className="visual visual-parking"><div className="visual-head"><span>SP / DASHBOARD</span><span>PARKING WEB APP <i/></span></div><div className="parking-layout"><div><small>AVAILABLE SLOTS</small><strong>08<span>/12</span></strong><div className="occupancy"><i/></div><small>LIVE OCCUPANCY</small></div><div className="parking-slots">{Array.from({length:12},(_,i)=><div key={i} className={[2,5,8,10].includes(i)?'filled':''}>{String(i+1).padStart(2,'0')}</div>)}</div></div><div className="visual-foot"><span>BOOKING: CONFIRMED</span><span>BOOK / ACCESS ↗</span></div><div className="visual-stamp">PARKING<br/>MANAGEMENT</div></div>;
   if (type === 'security') return <div className="visual visual-security"><div className="visual-head"><span>NETWORK / STUDY</span><span>STATUS: LEARNING</span></div><div className="security-orbit"><i/><i/><i/><b><ShieldCheck size={46}/></b><span>+</span></div><div className="security-data"><span>NETWORK<br/><b>01 / LOCAL</b></span><span>ACCESS<br/><b>CONTROLLED</b></span><span>MODE<br/><b>LEARN</b></span></div></div>;
   if (type === 'aviator') return <div className="visual visual-aviator"><div className="visual-head"><span>AVIATOR / LIVE ROUND</span><span>SOCKET.IO <i/></span></div><div className="aviator-sky"><div className="aviator-grid"/><div className="aviator-curve"/><div className="aviator-plane">↗</div><strong>2.48<span>×</span></strong><small>MULTIPLIER IN MOTION</small></div><div className="visual-foot"><span>REAL-TIME MULTIPLAYER</span><span>ROUND ACTIVE ↗</span></div></div>;
   if (type === 'finwise') return <div className="visual visual-finwise"><div className="visual-head"><span>FINWISE / OVERVIEW</span><span>MONTHLY SUMMARY</span></div><div className="finance-total"><small>NET BALANCE</small><strong>₹ 42,850<span>.00</span></strong><b>↗ 12.8% <small>THIS MONTH</small></b></div><div className="finance-bars">{[36,54,43,78,62,88,66,96,74,85,58,100].map((h,i)=><i key={i} style={{height:`${h}%`}}/>)}</div><div className="visual-foot"><span>INCOME / EXPENSES</span><span>INSIGHTS ↗</span></div></div>;
   if (type === 'converter') return <div className="visual visual-converter"><div className="visual-head"><span>FORMAT / CONVERTER</span><span>LOCAL PROCESSING</span></div><div className="converter-flow"><div className="file-tile"><b>PDF</b><span>document.pdf</span></div><ArrowDownRight size={26}/><div className="file-tile lime-file"><b>DOCX</b><span>document.docx</span></div></div><div className="converter-status"><i/> CONVERSION COMPLETE <span>100%</span></div><div className="visual-foot"><span>FILE UTILITIES</span><span>SAFE BY DESIGN ↗</span></div></div>;
-  return <div className="visual visual-motion"><div className="browser-bar"><i/><i/><i/><span>viresh.app / portfolio</span><ArrowUpRight size={13}/></div><div className="mock-screen"><span>V.</span><div><small>SOFTWARE DEVELOPER / IOT</small><strong>LESS<br/>ORDINARY<span>.</span></strong><em>EXPLORE PROJECTS ↗</em></div><div className="mock-orb"><i/></div><footer>SOFTWARE　 SYSTEMS　 BUILDING</footer></div><div className="visual-foot"><span>INTERACTION STUDY — 03</span><span>IN PROGRESS ↗</span></div></div>;
+  return <div className="visual visual-motion"><div className="browser-bar"><i/><i/><i/><span>viresh.app / portfolio</span><ArrowUpRight size={13}/></div><div className="mock-screen"><span>V.</span><div><small>SOFTWARE DEVELOPER / WEB</small><strong>LESS<br/>ORDINARY<span>.</span></strong><em>EXPLORE PROJECTS ↗</em></div><div className="mock-orb"><i/></div><footer>SOFTWARE　 SYSTEMS　 BUILDING</footer></div><div className="visual-foot"><span>INTERACTION STUDY — 03</span><span>IN PROGRESS ↗</span></div></div>;
 }
 
 function Work() {
@@ -107,24 +107,22 @@ function Work() {
 function About() {
   const skills = [
     ['01','LANGUAGES','Python / HTML / CSS'],
-    ['02','WEB & REAL-TIME','React / Node.js / Express / Socket.io'],
-    ['03','IOT & SYSTEMS','IoT-integrated apps / robotics / connected devices'],
-    ['04','TOOLS & PLATFORMS','Git / GitHub / Render / Namecheap / VS Code / Cursor / Claude Code'],
+    ['02','TOOLS & PLATFORMS','Git / GitHub / Render / Namecheap / VS Code / Claude Code / Cursor'],
   ];
   const education = [
     { period:'2025 — 2029', title:'Bachelor of Engineering', subtitle:'Information Science & Engineering', place:'Siddaganga Institute of Technology · Tumakuru, Karnataka', result:'CGPA 7.93 · 1st Year' },
     { period:'2023 — 2024', title:'Senior Secondary · Science', subtitle:'Sri Chaitanya Educational Institute', place:'Pune, Maharashtra', result:'67.83%' },
     { period:'2014 — 2023', title:'Secondary Education · 1st–10th', subtitle:'Podar International School', place:'Latur, Maharashtra', result:'92.16%' },
   ];
-  return <section id="about" className="about-section section-shell"><SectionLabel n="02">ABOUT / SKILLS / EDUCATION</SectionLabel><div className="about-grid"><h2 className="reveal-heading">CURIOUS BY<br/>DEFAULT.<br/><i>BUILDER BY</i><br/>CHOICE.</h2><div className="about-copy intro-fade"><p className="about-lead">I like figuring out how things work—then making them work a little better.</p><p>I'm Viresh Swami, a Software Developer & IoT Enthusiast pursuing a Bachelor of Engineering in Information Science & Engineering at Siddaganga Institute of Technology. I enjoy building real-time multiplayer applications, IoT-integrated web solutions, and full-stack projects. I learn by shipping projects, debugging what breaks, and refining the details.</p><div className="about-note"><span><MapPin size={13} /> BASED IN</span><b>BENGALURU, KARNATAKA, INDIA ↗</b></div></div></div>
-    <div className="subsection-heading"><span>01 /</span><h3>SKILLS & TECHNOLOGIES</h3><i/></div><div className="skills-list">{skills.map(([n,title,desc])=><div className="skill-row" key={n}><span>{n}</span><b>{title}</b><span>{desc}</span><ArrowUpRight size={17}/></div>)}</div>
+  return <section id="about" className="about-section section-shell"><SectionLabel n="02">ABOUT / SKILLS / EDUCATION</SectionLabel><div className="about-grid"><h2 className="reveal-heading">CURIOUS BY<br/>DEFAULT.<br/><i>BUILDER BY</i><br/>CHOICE.</h2><div className="about-copy intro-fade"><p className="about-lead">I like figuring out how things work—then making them work a little better.</p><p>I'm Viresh Swami, a Software Developer pursuing a Bachelor of Engineering in Information Science & Engineering at Siddaganga Institute of Technology. I enjoy building real-time multiplayer applications, full-stack web apps, and practical digital tools. I learn by shipping projects, debugging what breaks, and refining the details.</p><div className="about-note"><span><MapPin size={13} /> BASED IN</span><b>BENGALURU, KARNATAKA, INDIA ↗</b></div></div></div>
+    <div className="subsection-heading"><span>01 /</span><h3>SKILLS & TECHNOLOGIES</h3><i/></div><div className="skills-list">{skills.map(([n,title,desc])=><div className="skill-row" key={n}><span>{n}</span><b>{title}</b><span>{desc}</span></div>)}</div>
     <div className="subsection-heading education-heading"><span>02 /</span><h3>EDUCATION</h3><i/></div><div className="education-list">{education.map((e)=><article className="education-row" key={e.period}><span className="education-period">{e.period}</span><div className="education-main"><h4>{e.title}</h4><b>{e.subtitle}</b><p>{e.place}</p></div><span className="education-result">{e.result}</span></article>)}</div>
-    <div className="award-card"><div className="award-icon"><Trophy size={25}/></div><div className="award-copy"><span>APRIL 2026 / CORSIT · SIT TUMAKURU</span><h3>1st Place Winner — Robotics Workshop ’26</h3><p>Recognized for performance, innovation, and technical excellence at ROBOCOR ’26; the certificate was signed by Dr. S. V. Dinesh (Principal) and Dr. H. S. Shridhar (Club Mentor). Also participated in the Arcane Quiz competition.</p></div><div className="award-mark">#01</div></div>
+    <div className="award-card"><div className="award-icon"><Trophy size={25}/></div><div className="award-copy"><span>APRIL 2026 / CORSIT · SIT TUMAKURU</span><h3>1st Place Winner — Robotics Workshop ’26</h3><p>Recognized for performance, innovation, and technical excellence at ROBOCOR ’26; the certificate was signed by Dr. S. V. Dinesh (Principal) and Dr. H. S. Shridhar (Club Mentor).</p></div><div className="award-mark">#01</div></div>
   </section>;
 }
 
 function Contact() {
-  return <section id="contact" className="contact-section"><div className="contact-noise"/><div className="contact-inner section-shell"><SectionLabel n="03" dark>THE NEXT CHAPTER</SectionLabel><div className="contact-content"><p>HAVE A PROJECT IN MIND?</p><h2>LET'S MAKE<br/><i>IT MATTER.</i></h2><a className="contact-cta magnetic" href="mailto:swamiviresh2007@email.com"><span>EMAIL VIRESH SWAMI</span><ArrowUpRight size={24}/></a><div className="contact-details"><a href="mailto:swamiviresh2007@email.com"><Mail size={16}/> swamiviresh2007@email.com</a><a href="tel:+919890659693"><Phone size={16}/> +91 9890659693</a><a href={RESUME_URL} target="_blank" rel="noreferrer"><ArrowDown size={16}/> DOWNLOAD RESUME</a></div></div><footer className="footer-bottom"><Wordmark light/><span>VIRESH SWAMI · SOFTWARE DEVELOPER & IOT ENTHUSIAST</span><div className="socials"><a href="https://github.com/Swamiviresh" target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={17}/></a><a href="mailto:swamiviresh2007@email.com" aria-label="Email"><Mail size={17}/></a></div><span>© 2026 VIRESH SWAMI</span></footer></div></section>;
+  return <section id="contact" className="contact-section"><div className="contact-noise"/><div className="contact-inner section-shell"><SectionLabel n="03" dark>THE NEXT CHAPTER</SectionLabel><div className="contact-content"><p>HAVE A PROJECT IN MIND?</p><h2>LET'S MAKE<br/><i>IT MATTER.</i></h2><a className="contact-cta magnetic" href="mailto:swamiviresh2007@email.com"><span>EMAIL VIRESH SWAMI</span><ArrowUpRight size={24}/></a><div className="contact-details"><a href="mailto:swamiviresh2007@email.com"><Mail size={16}/> swamiviresh2007@email.com</a><a href="tel:+919890659693"><Phone size={16}/> +91 9890659693</a><a href={RESUME_URL} target="_blank" rel="noreferrer"><ArrowDown size={16}/> DOWNLOAD RESUME</a></div></div><footer className="footer-bottom"><Wordmark light/><span>VIRESH SWAMI · SOFTWARE DEVELOPER</span><div className="socials"><a href="https://github.com/Swamiviresh" target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={17}/></a><a href="mailto:swamiviresh2007@email.com" aria-label="Email"><Mail size={17}/></a></div><span>© 2026 VIRESH SWAMI</span></footer></div></section>;
 }
 
 function CustomCursor() {

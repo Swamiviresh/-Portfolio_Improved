@@ -1,6 +1,6 @@
 # Viresh Swami — Motion Portfolio
 
-A cinematic portfolio for **Viresh Swami**, Software Developer & IoT Enthusiast, pursuing a B.E. in Information Science & Engineering at Siddaganga Institute of Technology.
+A cinematic portfolio for **Viresh Swami**, Software Developer pursuing a B.E. in Information Science & Engineering at Siddaganga Institute of Technology.
 
 ## Profile highlights
 
