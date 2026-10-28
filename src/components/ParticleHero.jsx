@@ -80,7 +80,7 @@ export default function ParticleHero() {
         return;
       }
 
-      const stride = coarsePointer ? 4 : 3;
+      const stride = 1;
       const sampled = [];
       let seed = 1;
       for (let y = 1; y < sourceHeight; y += stride) {
@@ -164,9 +164,7 @@ export default function ParticleHero() {
     canvas.addEventListener('pointercancel', onPointerCancel);
     mount.addEventListener('keydown', onKeyDown);
 
-    image.onload = sampleAvatar;
     image.onerror = () => { mount.dataset.avatarFallback = 'true'; };
-    image.src = AVATAR_SRC;
 
     resize();
     resizeObserver = new ResizeObserver(resize);
@@ -278,7 +276,8 @@ export default function ParticleHero() {
         p.y = top + p.ny * image.naturalHeight * scale;
       }
     };
-    image.addEventListener('load', initPositions, { once: true });
+    image.addEventListener('load', () => { sampleAvatar(); initPositions(); }, { once: true });
+    image.src = AVATAR_SRC;
 
     render(0);
 
