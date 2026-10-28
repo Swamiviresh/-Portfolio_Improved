@@ -65,11 +65,16 @@ export default function ParticleHero() {
 
     const sampleAvatar = () => {
       if (!sampleCtx || !image.naturalWidth || !image.naturalHeight) return;
-      const sourceWidth = image.naturalWidth;
-      const sourceHeight = image.naturalHeight;
+      // Supersample the same stylized avatar so its silhouette is represented by
+      // many more points than the small source asset contains.
+      const sampleScale = coarsePointer ? 2 : 3;
+      const sourceWidth = image.naturalWidth * sampleScale;
+      const sourceHeight = image.naturalHeight * sampleScale;
       sampler.width = sourceWidth;
       sampler.height = sourceHeight;
       sampleCtx.clearRect(0, 0, sourceWidth, sourceHeight);
+      sampleCtx.imageSmoothingEnabled = true;
+      sampleCtx.imageSmoothingQuality = 'high';
       sampleCtx.drawImage(image, 0, 0, sourceWidth, sourceHeight);
 
       let pixels;
@@ -87,21 +92,47 @@ export default function ParticleHero() {
         for (let x = 1; x < sourceWidth; x += stride) {
           const index = (y * sourceWidth + x) * 4;
           const alpha = pixels[index + 3] / 255;
-          if (alpha < 0.22 || Math.random() > 0.96) continue;
+          if (alpha < 0.16) continue;
 
-          // Small, deliberate color quantization keeps the portrait feeling like a game avatar.
-          const quantize = channel => Math.min(255, Math.round(channel / 24) * 24);
-          const r = quantize(pixels[index]);
-          const g = quantize(pixels[index + 1]);
-          const b = quantize(pixels[index + 2]);
+          // Preserve the same avatar, but keep more of its original color detail.
+          const quantize = channel => Math.min(255, Math.round(channel / 12) * 12);
+          let r = quantize(pixels[index]);
+          let g = quantize(pixels[index + 1]);
+          let b = quantize(pixels[index + 2]);
           const brightness = (r * 0.2126 + g * 0.7152 + b * 0.0722) / 255;
+          const u = x / sourceWidth;
+          const colorRoll = (x * 17 + y * 31 + (x * y) % 67) % 23;
+          let accent = 'base';
+
+          // Small cyan and amber accents add game-like color without changing the face.
+          if (u < 0.48 && colorRoll < 5) {
+            const mix = 0.16 + (colorRoll % 3) * 0.035;
+            r = r * (1 - mix) + 36 * mix;
+            g = g * (1 - mix) + 188 * mix;
+            b = b * (1 - mix) + 255 * mix;
+            accent = 'cyan';
+          } else if (u > 0.52 && colorRoll > 18) {
+            const mix = 0.14 + (colorRoll % 3) * 0.035;
+            r = r * (1 - mix) + 255 * mix;
+            g = g * (1 - mix) + 151 * mix;
+            b = b * (1 - mix) + 62 * mix;
+            accent = 'amber';
+          } else if (colorRoll === 11) {
+            const mix = 0.17;
+            r = r * (1 - mix) + 177 * mix;
+            g = g * (1 - mix) + 142 * mix;
+            b = b * (1 - mix) + 255 * mix;
+            accent = 'violet';
+          }
+
           sampled.push({
             nx: x / sourceWidth,
             ny: y / sourceHeight,
-            r, g, b,
-            alpha: Math.min(1, alpha * 1.15),
-            size: random(0.78, brightness > 0.78 ? 1.52 : 1.25),
+            r: Math.round(r), g: Math.round(g), b: Math.round(b),
+            alpha: Math.min(1, alpha * 1.18),
+            size: random(0.72, brightness > 0.78 ? 1.35 : 1.08) * (accent === 'base' ? 1 : random(1.04, 1.22)),
             depth: random(-1, 1),
+            accent,
             seed: seed++,
             x: 0, y: 0, vx: 0, vy: 0,
           });
@@ -246,11 +277,11 @@ export default function ParticleHero() {
           if (displacement > 2.5) disturbedCount++;
         }
 
-        const shimmer = reducedMotion ? 0 : Math.sin(now * 0.0018 + p.seed * 0.27) * 0.08;
+        const shimmer = reducedMotion ? 0 : Math.sin(now * 0.0018 + p.seed * 0.27) * (p.accent === 'base' ? 0.1 : 0.18);
         const glow = age < pulseUntil ? (pulseUntil - age) / 500 : 0;
         const brightness = 1 + shimmer + glow * 0.35;
         const radius = Math.max(0.55, p.size * (0.84 + Math.abs(p.depth) * 0.25) * (1 + glow * 0.16));
-        const alpha = Math.max(0.15, Math.min(1, p.alpha * (0.76 + glow * 0.24)));
+        const alpha = Math.max(0.15, Math.min(1, p.alpha * (0.76 + glow * 0.24) * (p.accent === 'base' ? 1 : 1.04)));
 
         ctx.fillStyle = `rgba(${Math.min(255, p.r * brightness)},${Math.min(255, p.g * brightness)},${Math.min(255, p.b * brightness)},${alpha})`;
         if (p.seed % 7 === 0) {
