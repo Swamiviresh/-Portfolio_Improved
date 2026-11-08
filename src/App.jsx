@@ -108,10 +108,10 @@ function Hackathons() {
   const events = [
     {
       n: '01',
-      period: '31 OCT — 05 NOV 2026',
-      title: 'Hack-to-Ween 2026',
-      organizer: 'AWS Student Builder Group · IIT Jodhpur',
-      description: 'Developed Digital Graveyard, a website-risk analysis tool, for a Halloween-themed open-innovation hackathon.',
+      period: '2026',
+      title: 'Hack to Ween',
+      organizer: 'HALLOWEEN-THEMED HACKATHON',
+      description: 'Participated in a Halloween-themed hackathon, building Digital Graveyard — a website-risk analysis tool.',
       project: 'PROJECT / DIGITAL GRAVEYARD',
       certificate: 'https://drive.google.com/file/d/1WTW2WVAuYYkssIzmLmMYhQ1EnOyj1G-B/view?usp=sharing',
     },
