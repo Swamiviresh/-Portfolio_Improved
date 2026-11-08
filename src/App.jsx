@@ -7,7 +7,7 @@ import ThreeHero from './components/ThreeHero.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const RESUME_URL = import.meta.env.NEXT_PUBLIC_RESUME_URL || 'https://nlmmbqpnshyrovulfmhm.supabase.co/storage/v1/object/public/resume/Viresh_Swami_Updated_Resume.pdf';
+const RESUME_URL = 'https://drive.google.com/file/d/1lgLbz9VC7rDzVBp5V63fzTKoPxHhFmCA/view?usp=sharing';
 
 const projects = [
   {
@@ -104,6 +104,49 @@ function Work() {
   return <section id="work" className="work-section"><div className="work-heading section-shell"><SectionLabel n="01">FEATURED PROJECTS</SectionLabel><div className="work-heading-row"><h2 className="reveal-heading">BUILT IN<br/><i>THE REAL WORLD.</i></h2><p>Projects that connect code to people,<br/>devices, and everyday problems.</p></div></div><div className="projects-track">{projects.map(p=><article className="project-card" key={p.n}><a className="project-preview" href={p.source} target="_blank" rel="noreferrer" aria-label={`View source for ${p.type}`}><ProjectVisual type={p.visual}/><span className="preview-arrow"><ArrowUpRight size={21}/></span></a><div className="project-info"><div className="project-line"><span>{p.n} / {p.type}</span><span>{p.icon}</span></div><h3>{p.title}</h3><p>{p.desc}</p><div className="project-tags">{p.tags.map(t=><span key={t}>{t}</span>)}</div><div className="project-links"><a href={p.source} target="_blank" rel="noreferrer"><Github size={14}/> SOURCE CODE <ArrowUpRight size={13}/></a>{p.live&&<a href={p.live} target="_blank" rel="noreferrer"><ExternalLink size={14}/> LIVE PROJECT <ArrowUpRight size={13}/></a>}</div></div></article>)}</div><div className="work-bottom section-shell"><span>MORE PROJECTS & EXPERIMENTS</span><a href="https://github.com/Swamiviresh" target="_blank" rel="noreferrer">VISIT GITHUB <ArrowUpRight size={16}/></a></div></section>;
 }
 
+function Hackathons() {
+  const events = [
+    {
+      n: '01',
+      period: '31 OCT — 05 NOV 2026',
+      title: 'Hack-to-Ween 2026',
+      organizer: 'AWS Student Builder Group · IIT Jodhpur',
+      description: 'Developed Digital Graveyard, a website-risk analysis tool, for a Halloween-themed open-innovation hackathon.',
+      project: 'PROJECT / DIGITAL GRAVEYARD',
+      certificate: 'https://drive.google.com/file/d/1WTW2WVAuYYkssIzmLmMYhQ1EnOyj1G-B/view?usp=sharing',
+    },
+    {
+      n: '02',
+      period: '17 — 20 SEP 2026',
+      title: 'First Commit',
+      organizer: 'Bharat Builds Tour · WeMakeDevs × AWS',
+      description: 'A four-day hackathon experience focused on building and shipping a project as part of the Bharat Builds Tour.',
+      project: 'EVENT 01 / BHARAT BUILDS TOUR',
+      certificate: 'https://drive.google.com/file/d/1I8t02veNDM_aPyPhULprzLepNSmSHsgs/view?usp=sharing',
+    },
+  ];
+
+  return <section id="hackathons" className="hackathons-section section-shell">
+    <SectionLabel n="02">HACKATHONS / BUILD SPRINTS</SectionLabel>
+    <div className="hackathons-heading-row">
+      <h2 className="reveal-heading">BUILT UNDER<br/><i>THE CLOCK.</i></h2>
+      <p>Ideas, teamwork, and working prototypes<br/>built against a real deadline.</p>
+    </div>
+    <div className="hackathon-grid">
+      {events.map(e => <article className="hackathon-card" key={e.n}>
+        <div className="hackathon-meta"><span>{e.n} / {e.period}</span><span>PARTICIPANT</span></div>
+        <h3>{e.title}</h3>
+        <p className="hackathon-organizer">{e.organizer}</p>
+        <p className="hackathon-description">{e.description}</p>
+        <div className="hackathon-footer">
+          <span>{e.project}</span>
+          <a href={e.certificate} target="_blank" rel="noreferrer">VIEW CERTIFICATE <ArrowUpRight size={14}/></a>
+        </div>
+      </article>)}
+    </div>
+  </section>;
+}
+
 function About() {
   const skills = [
     ['01','LANGUAGES','Python / HTML / CSS'],
@@ -114,7 +157,7 @@ function About() {
     { period:'2023 — 2024', title:'Senior Secondary · Science', subtitle:'Sri Chaitanya Educational Institute', place:'Pune, Maharashtra', result:'67.83%' },
     { period:'2014 — 2023', title:'Secondary Education · 1st–10th', subtitle:'Podar International School', place:'Latur, Maharashtra', result:'92.16%' },
   ];
-  return <section id="about" className="about-section section-shell"><SectionLabel n="02">ABOUT / SKILLS / EDUCATION</SectionLabel><div className="about-grid"><h2 className="reveal-heading">CURIOUS BY<br/>DEFAULT.<br/><i>BUILDER BY</i><br/>CHOICE.</h2><div className="about-copy intro-fade"><p className="about-lead">I like figuring out how things work—then making them work a little better.</p><p>I'm Viresh Swami, a Software Developer pursuing a Bachelor of Engineering in Information Science & Engineering at Siddaganga Institute of Technology. I enjoy building real-time multiplayer applications, full-stack web apps, and practical digital tools. I learn by shipping projects, debugging what breaks, and refining the details.</p><div className="about-note"><span><MapPin size={13} /> BASED IN</span><b>BENGALURU, KARNATAKA, INDIA ↗</b></div></div></div>
+  return <section id="about" className="about-section section-shell"><SectionLabel n="03">ABOUT / SKILLS / EDUCATION</SectionLabel><div className="about-grid"><h2 className="reveal-heading">CURIOUS BY<br/>DEFAULT.<br/><i>BUILDER BY</i><br/>CHOICE.</h2><div className="about-copy intro-fade"><p className="about-lead">I like figuring out how things work—then making them work a little better.</p><p>I'm Viresh Swami, a Software Developer pursuing a Bachelor of Engineering in Information Science & Engineering at Siddaganga Institute of Technology. I enjoy building real-time multiplayer applications, full-stack web apps, and practical digital tools. I learn by shipping projects, debugging what breaks, and refining the details.</p><div className="about-note"><span><MapPin size={13} /> BASED IN</span><b>BENGALURU, KARNATAKA, INDIA ↗</b></div></div></div>
     <div className="subsection-heading"><span>01 /</span><h3>SKILLS & TECHNOLOGIES</h3><i/></div><div className="skills-list">{skills.map(([n,title,desc])=><div className="skill-row" key={n}><span>{n}</span><b>{title}</b><span>{desc}</span></div>)}</div>
     <div className="subsection-heading education-heading"><span>02 /</span><h3>EDUCATION</h3><i/></div><div className="education-list">{education.map((e)=><article className="education-row" key={e.period}><span className="education-period">{e.period}</span><div className="education-main"><h4>{e.title}</h4><b>{e.subtitle}</b><p>{e.place}</p></div><span className="education-result">{e.result}</span></article>)}</div>
     <div className="award-card"><div className="award-icon"><Trophy size={25}/></div><div className="award-copy"><span>APRIL 2026 / CORSIT · SIT TUMAKURU</span><h3>1st Place Winner — Robotics Workshop ’26</h3><p>Recognized for performance, innovation, and technical excellence at ROBOCOR ’26; the certificate was signed by Dr. S. V. Dinesh (Principal) and Dr. H. S. Shridhar (Club Mentor).</p></div><div className="award-mark">#01</div></div>
@@ -122,7 +165,7 @@ function About() {
 }
 
 function Contact() {
-  return <section id="contact" className="contact-section"><div className="contact-noise"/><div className="contact-inner section-shell"><SectionLabel n="03" dark>THE NEXT CHAPTER</SectionLabel><div className="contact-content"><p>HAVE A PROJECT IN MIND?</p><h2>LET'S MAKE<br/><i>IT MATTER.</i></h2><a className="contact-cta magnetic" href="mailto:swamiviresh2007@email.com"><span>EMAIL VIRESH SWAMI</span><ArrowUpRight size={24}/></a><div className="contact-details"><a href="mailto:swamiviresh2007@email.com"><Mail size={16}/> swamiviresh2007@email.com</a><a href="tel:+919890659693"><Phone size={16}/> +91 9890659693</a><a href={RESUME_URL} target="_blank" rel="noreferrer"><ArrowDown size={16}/> DOWNLOAD RESUME</a></div></div><footer className="footer-bottom"><Wordmark light/><span>VIRESH SWAMI · SOFTWARE DEVELOPER</span><div className="socials"><a href="https://github.com/Swamiviresh" target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={17}/></a><a href="mailto:swamiviresh2007@email.com" aria-label="Email"><Mail size={17}/></a></div><span>© 2026 VIRESH SWAMI</span></footer></div></section>;
+  return <section id="contact" className="contact-section"><div className="contact-noise"/><div className="contact-inner section-shell"><SectionLabel n="04" dark>THE NEXT CHAPTER</SectionLabel><div className="contact-content"><p>HAVE A PROJECT IN MIND?</p><h2>LET'S MAKE<br/><i>IT MATTER.</i></h2><a className="contact-cta magnetic" href="mailto:swamiviresh2007@email.com"><span>EMAIL VIRESH SWAMI</span><ArrowUpRight size={24}/></a><div className="contact-details"><a href="mailto:swamiviresh2007@email.com"><Mail size={16}/> swamiviresh2007@email.com</a><a href="tel:+919890659693"><Phone size={16}/> +91 9890659693</a><a href={RESUME_URL} target="_blank" rel="noreferrer"><ArrowDown size={16}/> DOWNLOAD RESUME</a></div></div><footer className="footer-bottom"><Wordmark light/><span>VIRESH SWAMI · SOFTWARE DEVELOPER</span><div className="socials"><a href="https://github.com/Swamiviresh" target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={17}/></a><a href="mailto:swamiviresh2007@email.com" aria-label="Email"><Mail size={17}/></a></div><span>© 2026 VIRESH SWAMI</span></footer></div></section>;
 }
 
 function CustomCursor() {
@@ -169,7 +212,7 @@ export default function App() {
       intro.to('.hero-title b',{yPercent:0,rotateX:0,duration:1.15,stagger:.13},0).to('.hero-art',{y:0,opacity:1,duration:1.3},.25).to('.intro-fade',{y:0,opacity:1,duration:.8,stagger:.08},.42).from('.site-header > *',{y:-18,opacity:0,duration:.8,stagger:.1},.1);
       gsap.utils.toArray('.reveal-heading').forEach(el=>gsap.fromTo(el,{y:65,opacity:0,clipPath:'inset(0 0 14% 0)'},{y:0,opacity:1,clipPath:'inset(0 0 0 0)',duration:1,ease:'power4.out',scrollTrigger:{trigger:el,start:'top 86%',once:true}}));
       gsap.utils.toArray('.section-label').forEach(el=>gsap.fromTo(el,{x:-22,opacity:0},{x:0,opacity:1,duration:.7,scrollTrigger:{trigger:el,start:'top 90%',once:true}}));
-      gsap.utils.toArray('.skill-row,.education-row,.award-card,.about-note,.about-copy').forEach((el,i)=>gsap.fromTo(el,{y:35,opacity:0},{y:0,opacity:1,duration:.8,delay:i*.035,scrollTrigger:{trigger:el,start:'top 89%',once:true}}));
+      gsap.utils.toArray('.skill-row,.education-row,.award-card,.about-note,.about-copy,.hackathon-card').forEach((el,i)=>gsap.fromTo(el,{y:35,opacity:0},{y:0,opacity:1,duration:.8,delay:i*.035,scrollTrigger:{trigger:el,start:'top 89%',once:true}}));
       gsap.fromTo('.contact-content',{y:45,opacity:0},{y:0,opacity:1,duration:1,scrollTrigger:{trigger:'.contact-content',start:'top 85%',once:true}});
       gsap.to('.marquee-track',{xPercent:-25,ease:'none',scrollTrigger:{trigger:'.marquee',start:'top bottom',end:'bottom top',scrub:.5}});
       gsap.to('.hero-art',{yPercent:12,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:.55}});
@@ -188,5 +231,5 @@ export default function App() {
   },[loading]);
 
 
-  return <div className="app-shell" ref={root}><div className="scroll-progress"><i/></div><CustomCursor/><Header/><main><Hero/><Marquee/><Work/><About/><Contact/></main>{loading&&<Preloader onComplete={finish}/>}</div>;
+  return <div className="app-shell" ref={root}><div className="scroll-progress"><i/></div><CustomCursor/><Header/><main><Hero/><Marquee/><Work/><Hackathons/><About/><Contact/></main>{loading&&<Preloader onComplete={finish}/>}</div>;
 }
