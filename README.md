@@ -53,7 +53,7 @@ npm run preview
 
 ## Contact
 
-- Email: swamiviresh2007@email.com
+- Email: swamiviresh2007@gmail.com
 - Phone: +91 9890659693
 - GitHub: https://github.com/Swamiviresh
 - Resume: linked directly from the portfolio contact section
