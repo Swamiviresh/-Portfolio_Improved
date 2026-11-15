@@ -81,7 +81,7 @@ function Hero() {
       <div className="hero-intro intro-fade"><p>I’m <strong>Viresh Swami</strong> — an Information Science & Engineering student who builds real-time applications, full-stack web apps, and practical digital tools. Based in Bengaluru, India.</p><a className="round-arrow magnetic" href="#work" aria-label="Explore work"><ArrowDownRight size={23}/></a></div>
       <div className="hero-quicklinks intro-fade"><a href="https://github.com/Swamiviresh" target="_blank" rel="noreferrer"><Github size={15}/> GITHUB <ArrowUpRight size={12}/></a><a href="mailto:swamiviresh2007@gmail.com"><Mail size={15}/> EMAIL <ArrowUpRight size={12}/></a><a href={RESUME_URL} target="_blank" rel="noreferrer"><ArrowDown size={14}/> RESUME PDF</a></div>
       </div>
-      <div className="hero-art"><div className="coordinates top">BENGALURU<br/>KARNATAKA, IN</div><Suspense fallback={<div className="hero-webgl-mount" aria-hidden="true" />}><ThreeHero/></Suspense><div className="coordinates bottom">REAL-TIME / WEBGL<br/>POINTER TRACKING ↗</div><div className="figure-index"><span>FIG. 001</span><b>THE BUILDER</b></div><div className="scroll-cue">SCROLL TO EXPLORE <ArrowDown size={14}/></div></div>
+      <div className="hero-art"><div className="coordinates top">BENGALURU<br/>KARNATAKA, IN</div><Suspense fallback={<div className="hero-webgl-mount" aria-hidden="true" />}><ThreeHero/></Suspense><div className="coordinates bottom">REAL-TIME / WEBGL<br/>DRAG TO ROTATE ↗</div><div className="figure-index"><span>FIG. 001</span><b>THE BUILDER</b></div><div className="scroll-cue">SCROLL TO EXPLORE <ArrowDown size={14}/></div></div>
     </div>
     <div className="hero-footer intro-fade"><span>SOFTWARE / FULL-STACK / WEB</span><span>SIDDAGANGA INSTITUTE OF TECHNOLOGY</span><span>01 — 04</span></div>
   </section>;
@@ -181,8 +181,8 @@ function CustomCursor() {
     const x = gsap.quickTo(dot.current,'x',{duration:.12,ease:'power3'}), y = gsap.quickTo(dot.current,'y',{duration:.12,ease:'power3'});
     const rx = gsap.quickTo(ring.current,'x',{duration:.3,ease:'power3'}), ry = gsap.quickTo(ring.current,'y',{duration:.3,ease:'power3'});
     const move = e => { x(e.clientX); y(e.clientY); rx(e.clientX); ry(e.clientY); };
-    const over = e => { if(e.target.closest('a,button')) ring.current?.classList.add('cursor-hover'); };
-    const out = e => { if(e.target.closest('a,button') && !e.relatedTarget?.closest('a,button')) ring.current?.classList.remove('cursor-hover'); };
+    const over = e => { if(e.target.closest('a,button,.hero-webgl-mount')) ring.current?.classList.add('cursor-hover'); };
+    const out = e => { if(e.target.closest('a,button,.hero-webgl-mount') && !e.relatedTarget?.closest('a,button,.hero-webgl-mount')) ring.current?.classList.remove('cursor-hover'); };
     window.addEventListener('pointermove',move); document.addEventListener('pointerover',over); document.addEventListener('pointerout',out);
     return () => { window.removeEventListener('pointermove',move); document.removeEventListener('pointerover',over); document.removeEventListener('pointerout',out); };
   },[]);
