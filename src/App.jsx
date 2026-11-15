@@ -2,7 +2,7 @@ import { Suspense, lazy, useCallback, useEffect, useLayoutEffect, useRef, useSta
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
-import { ArrowDown, ArrowDownRight, ArrowUpRight, Github, Mail, Phone, MapPin, ShieldCheck, CarFront, Layers3, Trophy, ExternalLink } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Github, Mail, Phone, MapPin, ShieldCheck, CarFront, Layers3, Trophy, ExternalLink, Recycle } from 'lucide-react';
 
 const ThreeHero = lazy(() => import('./components/ThreeHero.jsx'));
 
@@ -14,37 +14,39 @@ const RESUME_URL = import.meta.env.VITE_RESUME_URL
 
 const projects = [
   {
-    n: '01', type: 'REAL-TIME / MULTIPLAYER',
-    title: <>Aviator crash<br/>game.</>,
-    desc: 'A real-time multiplayer crash game featuring a Canvas 2D plane animation, optimistic cashout UI, and a cancel-bet flow. Migrated from local SQLite to Turso cloud SQLite to keep data persistent on Render.',
-    tags: ['React', 'Node.js', 'Express', 'Socket.io', 'Turso'],
-    icon: <Layers3 size={21}/>, visual: 'aviator',
-    source: 'https://github.com/Swamiviresh/aviator',
+    n: '01', type: 'CYBERSECURITY / AWS',
+    title: <>Digital<br/>Graveyard.</>,
+    desc: 'A passive website security assessment tool that gathers DNS, RDAP, TLS, HTTP, and page-content evidence, then produces a deterministic risk score with an AI-generated explanation. Its asynchronous scanning pipeline runs on AWS Lambda, SQS, and DynamoDB.',
+    tags: ['TypeScript', 'AWS Lambda', 'SQS', 'DynamoDB', 'Gemini'],
+    icon: <ShieldCheck size={21}/>, visual: 'security',
+    source: 'https://github.com/Swamiviresh/Digital-Graveyard',
+    live: 'https://digital-graveyard-swamivireshs-projects.vercel.app/',
   },
   {
-    n: '02', type: 'FULL-STACK / WEB APP',
+    n: '02', type: 'SOCIAL IMPACT / FULL-STACK',
+    title: <>Kabad<br/>Saathi.</>,
+    desc: 'A multilingual doorstep scrap-pickup platform connecting households, waste collectors, and recyclers. It brings together transparent material rates, pickup tracking, collector earnings, Green Points, a recycler marketplace, and a voice-enabled assistant.',
+    tags: ['Next.js', 'TypeScript', 'Supabase', 'Leaflet', 'AI / Voice'],
+    icon: <Recycle size={21}/>, visual: 'kabad',
+    source: 'https://github.com/Swamiviresh/Kabad-Sathi',
+    live: 'https://kabad-sathi.vercel.app/',
+  },
+  {
+    n: '03', type: 'IOT / FULL-STACK',
     title: <>Smart parking,<br/>managed smarter.</>,
-    desc: 'A parking management web app with multi-level parking management, time-based slot booking, slot selection, and disability accommodation. Built with a six-member cross-disciplinary team on an approximately ₹8,000 budget.',
-    tags: ['React', 'Vite', 'Tailwind', 'Node.js', 'Turso'],
+    desc: 'A parking management system combining RFID-based entry, authenticated user accounts, live slot availability, and time-based reservations. Designed to connect physical parking access with a web-based booking and management experience.',
+    tags: ['Next.js', 'TypeScript', 'RFID', 'Turso', 'Prisma'],
     icon: <CarFront size={21}/>, visual: 'parking',
     source: 'https://github.com/Swamiviresh/New-Smart-Parking',
     live: 'https://smartparking.live/',
   },
   {
-    n: '03', type: 'FINTECH / WEB APP',
+    n: '04', type: 'FINTECH / FULL-STACK',
     title: <>Finwise money<br/>tracker.</>,
-    desc: 'A personal finance tracking application built with TypeScript and React to manage and visualize income and expenses with reusable, type-safe UI components.',
-    tags: ['TypeScript', 'React', 'Data Visualization'],
+    desc: 'A personal finance management app with transaction tracking, budgets, savings goals, recurring subscriptions, notifications, analytics, and exportable reports, backed by authenticated APIs and a relational data model.',
+    tags: ['Next.js', 'TypeScript', 'Prisma', 'Turso', 'Recharts'],
     icon: <Layers3 size={21}/>, visual: 'finwise',
     source: 'https://github.com/Swamiviresh/Finwise',
-  },
-  {
-    n: '04', type: 'WEB UTILITIES',
-    title: <>File format<br/>converter.</>,
-    desc: 'A browser-based file conversion utility focused on safe environment-variable handling, clear failure states, and thoughtful client-side file-processing flows.',
-    tags: ['TypeScript', 'React', 'Web APIs'],
-    icon: <ArrowDownRight size={21}/>, visual: 'converter',
-    source: 'https://github.com/Swamiviresh/Convert',
   },
 ];
 
@@ -96,7 +98,8 @@ function SectionLabel({ n, children, dark = false }) {
 
 function ProjectVisual({ type }) {
   if (type === 'parking') return <div className="visual visual-parking"><div className="visual-head"><span>SP / DASHBOARD</span><span>PARKING WEB APP <i/></span></div><div className="parking-layout"><div><small>AVAILABLE SLOTS</small><strong>08<span>/12</span></strong><div className="occupancy"><i/></div><small>LIVE OCCUPANCY</small></div><div className="parking-slots">{Array.from({length:12},(_,i)=><div key={i} className={[2,5,8,10].includes(i)?'filled':''}>{String(i+1).padStart(2,'0')}</div>)}</div></div><div className="visual-foot"><span>BOOKING: CONFIRMED</span><span>BOOK / ACCESS ↗</span></div><div className="visual-stamp">PARKING<br/>MANAGEMENT</div></div>;
-  if (type === 'security') return <div className="visual visual-security"><div className="visual-head"><span>NETWORK / STUDY</span><span>STATUS: LEARNING</span></div><div className="security-orbit"><i/><i/><i/><b><ShieldCheck size={46}/></b><span>+</span></div><div className="security-data"><span>NETWORK<br/><b>01 / LOCAL</b></span><span>ACCESS<br/><b>CONTROLLED</b></span><span>MODE<br/><b>LEARN</b></span></div></div>;
+  if (type === 'security') return <div className="visual visual-security"><div className="visual-head"><span>DIGITAL GRAVEYARD / SCAN</span><span>PASSIVE ANALYSIS <i/></span></div><div className="security-orbit"><i/><i/><i/><b><ShieldCheck size={46}/></b><span>+</span></div><div className="security-data"><span>DOMAIN<br/><b>DNS / RDAP</b></span><span>CONNECTION<br/><b>TLS / HTTP</b></span><span>ASSESSMENT<br/><b>RISK SCORE</b></span></div></div>;
+  if (type === 'kabad') return <div className="visual visual-kabad"><div className="visual-head"><span>KABAD SAATHI / PICKUP</span><span>COLLECTION FLOW <i/></span></div><div className="kabad-board"><div className="kabad-rate"><small>SCRAP RATE / KG</small><strong>₹ 28<span>.00</span></strong><b>METAL · TODAY</b></div><div className="kabad-pickup"><span className="kabad-status"><i/> PICKUP ACCEPTED</span><strong>Household → Collector</strong><div className="kabad-progress"><i/></div><small>ON THE WAY　·　TRACKING ACTIVE</small></div></div><div className="visual-foot"><span>REUSE / RECYCLE / REWARD</span><span>GREEN POINTS ↗</span></div></div>;
   if (type === 'aviator') return <div className="visual visual-aviator"><div className="visual-head"><span>AVIATOR / LIVE ROUND</span><span>SOCKET.IO <i/></span></div><div className="aviator-sky"><div className="aviator-grid"/><div className="aviator-curve"/><div className="aviator-plane">↗</div><strong>2.48<span>×</span></strong><small>MULTIPLIER IN MOTION</small></div><div className="visual-foot"><span>REAL-TIME MULTIPLAYER</span><span>ROUND ACTIVE ↗</span></div></div>;
   if (type === 'finwise') return <div className="visual visual-finwise"><div className="visual-head"><span>FINWISE / OVERVIEW</span><span>MONTHLY SUMMARY</span></div><div className="finance-total"><small>NET BALANCE</small><strong>₹ 42,850<span>.00</span></strong><b>↗ 12.8% <small>THIS MONTH</small></b></div><div className="finance-bars">{[36,54,43,78,62,88,66,96,74,85,58,100].map((h,i)=><i key={i} style={{height:`${h}%`}}/>)}</div><div className="visual-foot"><span>INCOME / EXPENSES</span><span>INSIGHTS ↗</span></div></div>;
   if (type === 'converter') return <div className="visual visual-converter"><div className="visual-head"><span>FORMAT / CONVERTER</span><span>LOCAL PROCESSING</span></div><div className="converter-flow"><div className="file-tile"><b>PDF</b><span>document.pdf</span></div><ArrowDownRight size={26}/><div className="file-tile lime-file"><b>DOCX</b><span>document.docx</span></div></div><div className="converter-status"><i/> CONVERSION COMPLETE <span>100%</span></div><div className="visual-foot"><span>FILE UTILITIES</span><span>SAFE BY DESIGN ↗</span></div></div>;
