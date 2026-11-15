@@ -74,15 +74,16 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--lime-dark);outline-
 .round-arrow{display:grid;flex:0 0 55px;place-items:center;width:55px;height:55px;border:1px solid var(--line-light);border-radius:50%;transition:background .3s,transform .3s,border-color .3s}
 .round-arrow:hover{background:var(--lime);border-color:var(--lime);transform:rotate(45deg)}
 .hero-art{position:relative;align-self:stretch;min-width:0;min-height:490px;overflow:visible}
-.hero-webgl-mount{position:absolute;inset:0;width:100%;height:100%;min-height:440px}
+.hero-webgl-mount{position:absolute;inset:0;width:100%;height:100%;min-height:440px;cursor:grab;touch-action:none;user-select:none}
+.hero-webgl-mount.is-dragging{cursor:grabbing}
 .hero-webgl-canvas{display:block;width:100%;height:100%;outline:0}
-.coordinates{position:absolute;z-index:2;color:#6d8196;font:9px/1.7 var(--mono);letter-spacing:.04em}
+.coordinates{position:absolute;z-index:2;color:#6d8196;font:9px/1.7 var(--mono);letter-spacing:.04em;pointer-events:none}
 .coordinates.top{top:27px;left:5px}
 .coordinates.bottom{right:2px;bottom:52px;text-align:right}
-.figure-index{position:absolute;z-index:2;right:0;top:50%;display:flex;flex-direction:column;gap:6px;transform:translateY(-50%);font:9px var(--mono);letter-spacing:.07em}
+.figure-index{position:absolute;z-index:2;right:0;top:50%;display:flex;flex-direction:column;gap:6px;transform:translateY(-50%);font:9px var(--mono);letter-spacing:.07em;pointer-events:none}
 .figure-index span{color:#6d8196}
 .figure-index b{font-weight:500}
-.scroll-cue{position:absolute;right:0;bottom:0;display:flex;align-items:center;gap:12px;color:#6d8196;font:9px var(--mono);letter-spacing:.07em}
+.scroll-cue{position:absolute;right:0;bottom:0;display:flex;align-items:center;gap:12px;color:#6d8196;font:9px var(--mono);letter-spacing:.07em;pointer-events:none}
 .hero-footer{display:flex;justify-content:space-between;gap:20px;padding:20px 0 26px;border-top:1px solid var(--line-light);font:9px var(--mono);letter-spacing:.09em;color:#6d8196}
 .hero-footer span:last-child{color:var(--ink)}
 
