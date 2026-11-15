@@ -114,14 +114,94 @@ export default function ThreeHero() {
     scene.add(halo);
 
     const pointer = { x: 0, y: 0, tx: 0, ty: 0 };
-    const onMove = e => {
+    const drag = {
+      isDragging: false,
+      previousX: 0,
+      previousY: 0,
+      rotationX: 0,
+      rotationY: 0,
+      velocityX: 0,
+      velocityY: 0,
+      lastMoveTime: 0,
+    };
+
+    const SENSITIVITY = 0.0055;
+    const FRICTION = 0.94;
+    const MAX_VELOCITY = 0.18;
+    const MIN_VELOCITY = 0.0001;
+
+    const onPointerDown = e => {
+      if (e.button !== undefined && e.button !== 0 && e.pointerType === 'mouse') return;
+      drag.isDragging = true;
+      drag.previousX = e.clientX;
+      drag.previousY = e.clientY;
+      drag.velocityX = 0;
+      drag.velocityY = 0;
+      drag.lastMoveTime = performance.now();
+      mount.classList.add('is-dragging');
+      if (mount.setPointerCapture) {
+        try {
+          mount.setPointerCapture(e.pointerId);
+        } catch (_) {}
+      }
+    };
+
+    const onPointerMove = e => {
       const r = mount.getBoundingClientRect();
       pointer.tx = ((e.clientX - r.left) / Math.max(r.width, 1) - 0.5) * 2;
       pointer.ty = ((e.clientY - r.top) / Math.max(r.height, 1) - 0.5) * 2;
+
+      if (!drag.isDragging) return;
+
+      const deltaX = e.clientX - drag.previousX;
+      const deltaY = e.clientY - drag.previousY;
+      const now = performance.now();
+      const dt = Math.max(1, now - drag.lastMoveTime);
+
+      drag.rotationY += deltaX * SENSITIVITY;
+      drag.rotationX = Math.max(-1.25, Math.min(1.25, drag.rotationX + deltaY * SENSITIVITY));
+
+      const frameDelta = dt / 16.67;
+      const vx = (deltaY * SENSITIVITY) / frameDelta;
+      const vy = (deltaX * SENSITIVITY) / frameDelta;
+
+      drag.velocityX = Math.max(-MAX_VELOCITY, Math.min(MAX_VELOCITY, vx));
+      drag.velocityY = Math.max(-MAX_VELOCITY, Math.min(MAX_VELOCITY, vy));
+
+      drag.previousX = e.clientX;
+      drag.previousY = e.clientY;
+      drag.lastMoveTime = now;
     };
-    const onLeave = () => { pointer.tx = 0; pointer.ty = 0; };
-    mount.addEventListener('pointermove', onMove, { passive: true });
-    mount.addEventListener('pointerleave', onLeave, { passive: true });
+
+    const onPointerUp = e => {
+      if (!drag.isDragging) return;
+      drag.isDragging = false;
+      mount.classList.remove('is-dragging');
+      if (performance.now() - drag.lastMoveTime > 120) {
+        drag.velocityX = 0;
+        drag.velocityY = 0;
+      }
+      if (mount.releasePointerCapture) {
+        try {
+          mount.releasePointerCapture(e.pointerId);
+        } catch (_) {}
+      }
+    };
+
+    const onPointerCancel = onPointerUp;
+    const onPointerLeave = () => {
+      pointer.tx = 0;
+      pointer.ty = 0;
+      if (!drag.isDragging) {
+        mount.classList.remove('is-dragging');
+      }
+    };
+
+    mount.addEventListener('pointerdown', onPointerDown);
+    mount.addEventListener('pointermove', onPointerMove, { passive: true });
+    mount.addEventListener('pointerup', onPointerUp);
+    mount.addEventListener('pointercancel', onPointerCancel);
+    mount.addEventListener('pointerleave', onPointerLeave);
 
     const clock = new THREE.Clock();
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -141,18 +221,39 @@ export default function ThreeHero() {
       const t = clock.getElapsedTime();
       pointer.x += (pointer.tx - pointer.x) * 0.035;
       pointer.y += (pointer.ty - pointer.y) * 0.035;
+
+      // Inertia & momentum physics
+      if (!drag.isDragging) {
+        if (Math.abs(drag.velocityY) > MIN_VELOCITY) {
+          drag.rotationY += drag.velocityY;
+          drag.velocityY *= FRICTION;
+        } else {
+          drag.velocityY = 0;
+        }
+
+        if (Math.abs(drag.velocityX) > MIN_VELOCITY) {
+          drag.rotationX = Math.max(-1.25, Math.min(1.25, drag.rotationX + drag.velocityX));
+          drag.velocityX *= FRICTION;
+        } else {
+          drag.velocityX = 0;
+        }
+      }
+
       if (!reduced) {
-        group.rotation.y = 0.24 + t * 0.12 + pointer.x * 0.19;
-        group.rotation.x = -0.18 + Math.sin(t * 0.25) * 0.09 - pointer.y * 0.16;
+        group.rotation.y = 0.24 + t * 0.12 + pointer.x * 0.19 + drag.rotationY;
+        group.rotation.x = -0.18 + Math.sin(t * 0.25) * 0.09 - pointer.y * 0.16 + drag.rotationX;
         group.rotation.z = -0.12 + Math.sin(t * 0.18) * 0.055;
         knot.rotation.x = 0.48 + t * 0.18;
         knot.rotation.y = 0.16 + t * 0.12;
         orbitA.rotation.z += 0.0018;
         orbitB.rotation.x -= 0.0014;
-        particles.rotation.y = t * 0.018;
-        particles.rotation.x = Math.sin(t * 0.12) * 0.035;
+        particles.rotation.y = t * 0.018 + drag.rotationY * 0.4;
+        particles.rotation.x = Math.sin(t * 0.12) * 0.035 + drag.rotationX * 0.3;
         halo.rotation.z = t * -0.04;
         core.scale.setScalar(1 + Math.sin(t * 1.1) * 0.018);
+      } else {
+        group.rotation.y = 0.24 + drag.rotationY;
+        group.rotation.x = -0.18 + drag.rotationX;
       }
       const bounds = mount.getBoundingClientRect();
       const scale = Math.min(bounds.width / 590, 1.08);
@@ -167,8 +268,11 @@ export default function ThreeHero() {
       disposed = true;
       cancelAnimationFrame(animationFrame);
       observer?.disconnect();
-      mount.removeEventListener('pointermove', onMove);
-      mount.removeEventListener('pointerleave', onLeave);
+      mount.removeEventListener('pointerdown', onPointerDown);
+      mount.removeEventListener('pointermove', onPointerMove);
+      mount.removeEventListener('pointerup', onPointerUp);
+      mount.removeEventListener('pointercancel', onPointerCancel);
+      mount.removeEventListener('pointerleave', onPointerLeave);
       scene.traverse(obj => {
         if (obj.geometry) obj.geometry.dispose();
         if (obj.material) (Array.isArray(obj.material) ? obj.material : [obj.material]).forEach(m => m.dispose());
