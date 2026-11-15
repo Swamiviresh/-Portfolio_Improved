@@ -2,7 +2,7 @@ import { Suspense, lazy, useCallback, useEffect, useLayoutEffect, useRef, useSta
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
-import { ArrowDown, ArrowUpRight, Github, Mail, Phone, MapPin, ShieldCheck, CarFront, Layers3, Trophy, ExternalLink, Recycle } from 'lucide-react';
+import { ArrowDown, ArrowDownRight, ArrowUpRight, Github, Mail, Phone, MapPin, ShieldCheck, CarFront, Layers3, Trophy, ExternalLink, Recycle } from 'lucide-react';
 
 const ThreeHero = lazy(() => import('./components/ThreeHero.jsx'));
 
